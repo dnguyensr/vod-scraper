@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require 'rubygems'
 require 'bundler'
 

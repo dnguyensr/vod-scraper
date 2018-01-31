@@ -2,7 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     dotenv (2.2.1)
+    mini_portile2 (2.3.0)
     mustermann (1.0.1)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     puma (3.11.2)
     rack (2.0.3)
     rack-protection (2.0.0)
@@ -19,6 +22,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
+  nokogiri
   puma
   sinatra
 
