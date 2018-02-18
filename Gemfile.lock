@@ -6,8 +6,9 @@ GEM
     mustermann (1.0.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    pg (1.0.0)
     puma (3.11.2)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-protection (2.0.0)
       rack
     sinatra (2.0.0)
@@ -23,6 +24,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   nokogiri
+  pg
   puma
   sinatra
 
