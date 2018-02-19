@@ -7,6 +7,8 @@ require_relative 'queries'
 Bundler.require
 
 class App < Sinatra::Base
+  set :method_override, true
+
 	get '/' do
 		erb :index
   end
@@ -14,5 +16,10 @@ class App < Sinatra::Base
   get '/vods' do
     @vods =  DB::Queries.all_vods
     erb :vods
+  end
+
+  delete '/vods/:id' do
+    DB::Queries.delete_vod(id: params[:id])
+    redirect '/vods'
   end
 end

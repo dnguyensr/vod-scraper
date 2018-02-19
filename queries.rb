@@ -9,5 +9,6 @@ QUERIES = {
     VALUES (:id, :url, :title, :date)
     ON CONFLICT DO NOTHING
   },
+  delete_vod: %{DELETE FROM vods WHERE id = :id},
   clear_vods: %{DELETE FROM vods},
 }
