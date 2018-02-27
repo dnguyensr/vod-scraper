@@ -1,6 +1,6 @@
 require 'pg'
 require_relative 'queries'
-# Be sure to create db by running `createdb sinatra-scraper`
+# Be sure to create db by running `createdb vod-scraper`
 # or update db name to match the name of db
 
 # conn.exec(%{insert into vods(id, url, title, date) values (4241,'http://www.arirang.com/Player/Vod_Play.asp?MKey=L03UGJGY', '[Pops in Seoul] MOMOLAND(모모랜드)''s Pick & Talk(뽑고 말해요)', '2018-01-31')})
@@ -21,7 +21,7 @@ module DB
     arg_keys = args_hash.keys
     arg_values = args_hash.values
 
-    conn = PG::Connection.open(:dbname => 'sinatra-scraper')
+    conn = PG::Connection.open(:dbname => ENV['DATABASE_NAME'])
 
     sql = sql_spec.gsub(/:\w+/) do |field_name|
       field_name = field_name.to_s.sub(/\A:/, '').to_sym
