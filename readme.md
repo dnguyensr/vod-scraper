@@ -13,7 +13,7 @@ Database credentials can be retrived from Heroku under the Resources tab of the 
 Replace host, user, and database fields with Database Credentials and run in terminal. There will be password prompt which requires the password in Heroku's Database Credentials
 
 ```
-heroku run psql -h [Host] -U [User] [Database]
+heroku run pg:psql
 ```
 
 Migrations/Tables can be manually added, the example below is the same as the 001-ar.sql under the migrations dir.
