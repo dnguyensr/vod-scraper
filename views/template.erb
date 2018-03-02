@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Vods - View Only</title>
+    <style>
+      table {
+        width: 100%;
+      }
+
+      th {
+        font-weight: bold;
+      }
+      td, th {
+        padding: 6px;
+        border: 1px solid black;
+        text-align: center;
+      }
+      nav ul {
+        display: -webkit-flex;
+        display: flex;
+        list-style-type: none;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      nav ul li {
+        border: none;
+      }
+
+      nav ul li a:link,
+      nav ul li a:visited,
+      nav ul li a:hover,
+      nav ul li a:active {
+        text-decoration: none;
+      }
+      .admin-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .scrape {
+        background-color: green;
+        color: white;
+        font-weight: bold;
+      }
+      .delete {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/vods">Admin</a>
+        </li>
+      </ul>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
+

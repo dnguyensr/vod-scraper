@@ -1,72 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>All Vods</title>
-    <style>
-      table {
-        width: 100%;
-      }
-
-      th {
-        font-weight: bold;
-      }
-      td, th {
-        padding: 6px;
-        border: 1px solid black;
-        text-align: center;
-      }
-      .container > ul:nth-child(0) {
-
-      }
-
-      ul {
-        display: flex;
-      }
-      li {
-        list-style: none;
-        align-items: flex-start;
-        border: 1px solid black;
-      }
-      li:nth-child(1),
-      li:nth-child(2),
-      li:nth-child(4),
-      li:nth-child(5) {
-        flex: 0 0 10%;
-      }
-      li:nth-child(3) {
-        flex: 0 0 60%;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>vods</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Title</th>
-          <th>URL</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @vods.each do |vod| %>
-        <tr>
-          <td><%= vod.id %></td>
-          <td><%= vod.date %></td>
-          <td><%= vod.title %></td>
-          <td><a href="<%= vod.url %>">Link</a></td>
-          <td>
-            <form action="/vods/<%= vod.id %>" method="post">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="submit" value="Delete">
-            </form>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </body>
-</html>
-
+<h1>vods</h1>
+<nav class="admin-nav">
+  <form action="/scrape_vods" method="POST">
+    <input class="scrape" type="submit" value="Scrape vods">
+  </form>
+  <form onsubmit="return confirm('Are you sure you want to delete all vods?');" action="/vods" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input class="delete" type="submit" value="Delete all vods?">
+  </form>
+</nav>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vods.each do |vod| %>
+    <tr>
+      <td><%= vod.id %></td>
+      <td><%= vod.date %></td>
+      <td><%= vod.title %></td>
+      <td><a href="<%= vod.url %>">Link</a></td>
+      <td>
+        <form action="/vods/<%= vod.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

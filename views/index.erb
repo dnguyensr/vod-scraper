@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Index</title>
-  </head>
-  <body>
-    <h1>Index</h1>
-  </body>
-</html>
-
+<h1>vods</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vods.each do |vod| %>
+    <tr>
+      <td><%= vod.id %></td>
+      <td><%= vod.date %></td>
+      <td><%= vod.title %></td>
+      <td><a href="<%= vod.url %>">Link</a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
