@@ -33,5 +33,3 @@ def scrape
   doc = Nokogiri::HTML(open('http://www.arirang.com/Tv2/Tv_VOD_Category.asp?PROG_CODE=TVCR0102&Menu_Code=101824'))
   push_vods_to_db(doc)
 end
-
-scrape

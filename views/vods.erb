@@ -1,4 +1,13 @@
 <h1>vods</h1>
+<nav class="admin-nav">
+  <form action="/scrape_vods" method="POST">
+    <input class="scrape" type="submit" value="Scrape vods">
+  </form>
+  <form onsubmit="return confirm('Are you sure you want to delete all vods?');" action="/vods" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input class="delete" type="submit" value="Delete all vods?">
+  </form>
+</nav>
 <table>
   <thead>
     <tr>

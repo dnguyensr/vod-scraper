@@ -3,6 +3,7 @@ require 'rubygems'
 require 'bundler'
 require_relative 'db'
 require_relative 'queries'
+require_relative 'lib/ar_scraper'
 
 Bundler.require
 
@@ -21,6 +22,16 @@ class App < Sinatra::Base
 
   delete '/vods/:id' do
     DB::Queries.delete_vod(id: params[:id])
+    redirect '/vods'
+  end
+
+  post '/scrape_vods' do
+    scrape
+    redirect '/vods'
+  end
+
+  delete '/vods' do
+    DB::Queries.clear_vods
     redirect '/vods'
   end
 end
