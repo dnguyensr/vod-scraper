@@ -18,16 +18,10 @@ def scrape_arkpop_yt(args)
       id = vod['href'][9..-1]
       if !unique_ids.include?(id)
         yt_url = make_yt_url(vod['href'])
-        title =  vod.text.encode("iso-8859-1").force_encoding("utf-8")
+        title =  vod.text
         date = DateTime.now.strftime('%Y-%m-%d')
-        p [id, yt_url, title, date]
         push_vod_to_yt(id, yt_url, title, date)
       end
     end
   end
 end
-
-arkpop_args = {
-  url: 'https://www.youtube.com/user/arirangworld/videos',
-  contains: 'Pops in Seoul'
-}
