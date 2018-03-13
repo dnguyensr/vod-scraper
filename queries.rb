@@ -19,6 +19,7 @@ QUERIES = {
     ON CONFLICT DO NOTHING
   },
   delete_vod: %{DELETE FROM vods WHERE id = :id},
+  delete_yt: %{DELETE FROM yt WHERE id = :id},
   clear_vods: %{DELETE FROM vods},
   clear_yt: %{DELETE FROM yt}
 }

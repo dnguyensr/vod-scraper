@@ -1,4 +1,4 @@
-<h1>Edit <%= @vod.id %></h1>
+<h1>Edit</h1>
 
 <table>
   <thead>
@@ -17,7 +17,7 @@
       <td><%= @vod.title %></td>
       <td><a href="<%= @vod.url %>">Link</a></td>
       <td>
-        <form action="/vods/<%= @vod.id %>" method="post">
+        <form action="/yt/<%= @vod.id %>" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="Delete">
         </form>

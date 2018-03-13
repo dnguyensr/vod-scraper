@@ -58,7 +58,7 @@ class App < Sinatra::Base
       end
 
       delete '/:id' do
-        DB::Queries.delete_vod(id: params[:id])
+        DB::Queries.delete_yt(id: params[:id])
         redirect '/admin/yt/'
       end
     end
