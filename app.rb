@@ -1,7 +1,7 @@
 require 'dotenv/load'
 require 'rubygems'
 require 'bundler'
-require "sinatra/namespace"
+require 'sinatra/namespace'
 require_relative 'db'
 require_relative 'queries'
 require_relative 'lib/scrape_yt'
@@ -15,17 +15,8 @@ class App < Sinatra::Base
 
   get '/' do
     @vods =  DB::Queries.all_vods
+    @yt =  DB::Queries.get_vods_from_yt
 		erb :index, :layout => :template
-  end
-
-  get '/vods' do
-    @vods =  DB::Queries.all_vods
-    erb :vods, :layout => :template
-  end
-
-  get '/yt' do
-    @vods =  DB::Queries.get_vods_from_yt
-    erb :yt, :layout => :template
   end
 
   namespace '/admin' do
@@ -62,20 +53,37 @@ class App < Sinatra::Base
         redirect '/admin/yt/'
       end
     end
-  end
 
-  delete '/vods/:id' do
-    DB::Queries.delete_vod(id: params[:id])
-    redirect '/vods'
-  end
+    get '/vods' do
+      redirect '/admin/vods/'
+    end
 
-  post '/scrape_vods' do
-    scrape
-    redirect '/vods'
-  end
+    namespace '/vods' do
+      get '/' do
+        @vods =  DB::Queries.all_vods
+        p Date
+        erb :'admin/admin_vod', :layout => :template
+      end
 
-  delete '/vods' do
-    DB::Queries.clear_vods
-    redirect '/vods'
+      post '/scrape' do
+        scrape
+        redirect '/admin/vods'
+      end
+
+      delete '/delete' do
+        DB::Queries.clear_vods
+        redirect '/admin/vods'
+      end
+
+      get '/:id/edit' do
+        @vod =  DB::Queries.find_vods_by_id({id:  params[:id]})[0]
+        erb :'admin/admin_vod_edit', :layout => :template
+      end
+
+      delete '/:id' do
+        DB::Queries.delete_vod(id: params[:id])
+        redirect '/admin/vods'
+      end
+    end
   end
 end

@@ -1,9 +1,9 @@
-<h1>vods</h1>
+<h1 style="text-align:center;">vods</h1>
 <nav class="admin-nav">
-  <form action="/scrape_vods" method="POST">
+  <form action="/admin/vods/scrape" method="POST">
     <input class="scrape" type="submit" value="Scrape vods">
   </form>
-  <form onsubmit="return confirm('Are you sure you want to delete all vods?');" action="/vods" method="POST">
+  <form onsubmit="return confirm('Are you sure you want to delete all vods?');" action="/admin/vods/delete" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input class="delete" type="submit" value="Delete all vods?">
   </form>
@@ -26,7 +26,7 @@
       <td><%= vod.title %></td>
       <td><a href="<%= vod.url %>">Link</a></td>
       <td>
-        <form action="/vods/<%= vod.id %>" method="post">
+        <form action="/admin/vods/<%= vod.id %>" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="Delete">
         </form>
