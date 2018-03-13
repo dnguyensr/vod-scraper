@@ -1,0 +1,62 @@
+<nav class="admin-sub-nav">
+  <button onclick="window.location.href='/admin/yt'">View Youtube</button>
+  <button onclick="window.location.href='/admin/vods'">View Arirang</button>
+</nav>
+
+<h1 style="text-align:center;">Youtube VODs</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @yt.each do |vod| %>
+    <tr>
+      <td><%= vod.id %></td>
+      <td><%= vod.date %></td>
+      <td><%= vod.title %></td>
+      <td><a href="<%= vod.url %>">Link</a></td>
+      <td>
+        <form action="/admin/yt/<%= vod.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1 style="text-align:center;">Arirang VODs</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vods.each do |vod| %>
+    <tr>
+      <td><%= vod.id %></td>
+      <td><%= vod.date %></td>
+      <td><%= vod.title %></td>
+      <td><a href="<%= vod.url %>">Link</a></td>
+      <td>
+        <form action="/admin/vods/<%= vod.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

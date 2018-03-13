@@ -11,7 +11,14 @@ Bundler.require
 
 class App < Sinatra::Base
   set :method_override, true
+  set :sessions, :expire_after => 21600
   register Sinatra::Namespace
+
+  helpers do
+    def is_admin?
+      session[:admin] == true
+    end
+  end
 
   get '/' do
     @vods =  DB::Queries.all_vods
@@ -19,11 +26,39 @@ class App < Sinatra::Base
 		erb :index, :layout => :template
   end
 
+  get '/admin' do
+    redirect '/admin/'
+  end
+
+
   namespace '/admin' do
+    get '/' do
+      if is_admin?
+        @vods =  DB::Queries.all_vods
+        @yt =  DB::Queries.get_vods_from_yt
+        erb :admin, :layout => :template
+      else
+        erb :auth, :layout => :template
+      end
+    end
+
+    post '/' do
+      if params[:admin_pass] == ENV['ADMIN_PASS']
+        session[:admin] = true
+        redirect '/admin/'
+      else
+        redirect '/admin/'
+      end
+    end
+
     get '/yt' do
       redirect '/admin/yt/'
     end
+
     namespace '/yt' do
+      before do
+        redirect '/admin/' if !is_admin?
+      end
       get '/' do
         @vods =  DB::Queries.get_vods_from_yt
         erb :'admin/admin_yt', :layout => :template
@@ -59,6 +94,9 @@ class App < Sinatra::Base
     end
 
     namespace '/vods' do
+      before do
+        redirect '/admin/' if !is_admin?
+      end
       get '/' do
         @vods =  DB::Queries.all_vods
         p Date
