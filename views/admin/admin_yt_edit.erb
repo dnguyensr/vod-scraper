@@ -1,0 +1,27 @@
+<h1>Edit</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @vod.id %></td>
+      <td><%= @vod.date %></td>
+      <td><%= @vod.title %></td>
+      <td><a href="<%= @vod.url %>">Link</a></td>
+      <td>
+        <form action="/yt/<%= @vod.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
