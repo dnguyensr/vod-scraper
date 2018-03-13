@@ -19,7 +19,8 @@ createdb [database name]
 
 | ENV Variable  | Value         |
 | ------------- |:-------------:|
-| DATABASE_URL  |postgres://username:password@localhost:5432/database_name |
+| DATABASE_URL  | postgres://username:password@localhost:5432/database_name|
+| ADMIN_PASS    | value used in basic authentication for admin access      |
 
 For DATABASE_URL, use local postgres cresdentials for username and passsowrd. Database_name should be the one used in creating the database. Port 5432 is the default Postgres port which should be updated if Postgres is set to a non-default port value.
 
