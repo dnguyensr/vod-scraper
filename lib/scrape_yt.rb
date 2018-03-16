@@ -14,7 +14,7 @@ def scrape_arkpop_yt(args)
   unique_ids = get_ids_from_yt
 
   doc.css("a:contains('#{args[:contains]}')").each do |vod|
-    if !vod.parent.parent.css('li')[1].text.include?('hour')
+    if !vod.parent.parent.css('li')[1].text.include?('days')
       id = vod['href'][9..-1]
       if !unique_ids.include?(id)
         yt_url = make_yt_url(vod['href'])
