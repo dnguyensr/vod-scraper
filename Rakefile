@@ -18,4 +18,3 @@ task :scrape_arkpop_yt do
   scrape_arkpop_yt(arkpop_args)
   puts "Scraping complete."
 end
-
